@@ -33,6 +33,9 @@ jobs:
     - name: Build Application (SCA)
       run: npm install
 
+    - name: Install ESLint
+      run: npm install eslint --save-dev
+
     - name: Run ESLint (SAST)
       run: npx eslint . --ext .js
 
