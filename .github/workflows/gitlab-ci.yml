@@ -43,6 +43,8 @@ jobs:
       env:
         FRONTEND_URL: "http://localhost"
         JWT_SECRET: "randomstring"
+        MONGODB_URI: "mongodb://localhost:27017"
+        MONGODB_DB_NAME: "dummyjson-test-db"
 
     - name: Start ZAP
       run: |
