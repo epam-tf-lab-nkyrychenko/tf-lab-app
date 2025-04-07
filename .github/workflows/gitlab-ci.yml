@@ -44,7 +44,7 @@ jobs:
     - name: Run app
       run: |
         node index.js &
-        npx wait-on http://localhost:3123
+        npx wait-on http://localhost:8888
       env:
         FRONTEND_URL: "http://localhost"
         JWT_SECRET: "randomstring"
@@ -53,7 +53,7 @@ jobs:
 
     - name: Start ZAP
       run: |
-        AUTH_TOKEN=$(curl -XPOST -H 'Content-Type: application/json' "http://localhost:3123/auth/login" -d "{\"username\": \"${{ secrets.USERNAME }}\", \"password\":\"${{ secrets.PASSWORD }}\"}" | jq -r ".token")
+        AUTH_TOKEN=$(curl -XPOST -H 'Content-Type: application/json' "http://localhost:8888/auth/login" -d "{\"username\": \"${{ secrets.USERNAME }}\", \"password\":\"${{ secrets.PASSWORD }}\"}" | jq -r ".token")
         echo "ZAP_AUTH_HEADER_VALUE=Bearer\ $AUTH_TOKEN" >> $GITHUB_ENV
         echo "ZAP_AUTH_HEADER=Authorization" >> $GITHUB_ENV
         $ZAP_PATH/zap.sh -daemon -host 0.0.0.0 -port 8090 -config api.disablekey=true &
@@ -64,10 +64,10 @@ jobs:
         zap-cli -p 8090 status -t 120
         zap-cli -p 8090 -v quick-scan \
         --spider \
-        "http://localhost:3123/"
+        "http://localhost:8888/"
 
     - name: Stop App and ZAP
       run: |
         zap-cli -p 8090 shutdown
-        kill $(lsof -t -i:3123)
+        kill $(lsof -t -i:8888)
 
