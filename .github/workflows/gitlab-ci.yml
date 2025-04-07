@@ -44,7 +44,7 @@ jobs:
     - name: Run app
       run: |
         node index.js &
-        npx wait-on http://localhost:8888
+        npx wait-on http://localhost:8888/api/status
       env:
         FRONTEND_URL: "http://localhost"
         JWT_SECRET: "randomstring"
