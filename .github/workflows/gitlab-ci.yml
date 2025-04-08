@@ -47,10 +47,9 @@ jobs:
     - name: Run app
       run: |
         node index.js &
-        npx wait-on http://localhost:8888
-        echo "✅ App is running and ready!"
+        npx wait-on http://localhost:8888 --timeout 30 --verbose
       env:
-        FRONTEND_URL: "http://localhost:8888"
+        FRONTEND_URL: "http://localhost"
         JWT_SECRET: "randomstring"
         MONGODB_URI: "mongodb://localhost:27017"
         MONGODB_DB_NAME: "dummyjson-test-db"
