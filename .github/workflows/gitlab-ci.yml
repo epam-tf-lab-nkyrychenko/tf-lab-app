@@ -43,9 +43,12 @@ jobs:
 
     - name: Run ESLint (SAST)
       run: npx eslint . --ext .js
+
     - name: Install Python dependencies
       run: |
-        pip install --upgrade zapcli requests urllib3 six
+        pip uninstall urllib3 
+        pip uninstall six
+        pip install --upgrade urllib3 six
 
     - name: Run app
       run: |
