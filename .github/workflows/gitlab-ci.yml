@@ -46,9 +46,11 @@ jobs:
 
     - name: Run app
       run: |
-        node index.js && npx wait-on http://localhost:8888
+        node index.js &
+        npx wait-on http://localhost:8888
+        echo "✅ App is running and ready!"
       env:
-        FRONTEND_URL: "http://localhost"
+        FRONTEND_URL: "http://localhost:8888"
         JWT_SECRET: "randomstring"
         MONGODB_URI: "mongodb://localhost:27017"
         MONGODB_DB_NAME: "dummyjson-test-db"
