@@ -38,6 +38,9 @@ jobs:
     - name: Build Application (SCA)
       run: npm install
 
+    - name: Install wait-on
+      run: npm install wait-on
+
     - name: Run ESLint (SAST)
       run: npx eslint . --ext .js
 
