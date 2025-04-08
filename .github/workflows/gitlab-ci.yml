@@ -58,6 +58,9 @@ jobs:
     - name: Start ZAP
       run: |
         AUTH_TOKEN=$(curl -L -XPOST -H 'Content-Type: application/json' "http://localhost:8888/auth/login" -d "{\"username\": \"${{ secrets.ORG_USERNAME }}\", \"password\":\"${{ secrets.ORG_PASSWORD }}\"}" | jq -r ".token")
+        echo "-----------1------------"
+        echo $AUTH_TOKEN
+        echo "-----------2------------"
         echo "ZAP_AUTH_HEADER_VALUE=Bearer\ $AUTH_TOKEN" >> $GITHUB_ENV
         echo "ZAP_AUTH_HEADER=Authorization" >> $GITHUB_ENV
         $ZAP_PATH/zap.sh -daemon -host 0.0.0.0 -port 8090 -config api.disablekey=true &
