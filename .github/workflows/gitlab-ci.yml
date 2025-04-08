@@ -47,7 +47,7 @@ jobs:
     - name: Run app
       run: |
         node index.js &
-        npx wait-on http://localhost:8888/auth/login --timeout 30 --verbose
+        npx wait-on http://localhost:8888/auth/login --timeout 300 --verbose
       env:
         FRONTEND_URL: "http://localhost"
         JWT_SECRET: "randomstring"
