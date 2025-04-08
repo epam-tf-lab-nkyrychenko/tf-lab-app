@@ -47,7 +47,7 @@ jobs:
     - name: Run app
       run: |
         node index.js &
-        npx wait-on http://localhost:8888 --timeout 30000 --verbose
+        npx wait-on tcp:8888 --timeout 30000 --verbose
         echo "✅ App is running"
       env:
         FRONTEND_URL: "http://localhost"
