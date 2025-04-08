@@ -46,8 +46,8 @@ jobs:
 
     - name: Install Python dependencies
       run: |
-        pip uninstall urllib3 
-        pip uninstall six
+        pip uninstall -y urllib3 
+        pip uninstall -y six
         pip install --upgrade urllib3 six
 
     - name: Run app
