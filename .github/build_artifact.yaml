@@ -1,0 +1,40 @@
+name: CI Workflow
+
+on:
+  pull_request:
+  triggers: [open, reopen]
+    branches: [main]
+  workflow_dispatch:
+
+env: 
+  FILE_NAME: index
+
+jobs:
+  ci-workflow:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Set up environment
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y openjdk-8-jre-headless
+        pip3 install pytest pytest-xdist
+        pip3 install zapcli
+
+    - name: Use Node.js 18.x
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18.x
+
+    - name: Build Application (SCA)
+      run: npm install
+
+    - name: Install wait-on
+      run: npm install wait-on
+      
+    - name: Upload Build Output
+      uses: actions/upload-artifact@v3
+      with:
+        name: frontend-build
+        path: dist/
