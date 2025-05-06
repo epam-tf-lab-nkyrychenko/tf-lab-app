@@ -2,7 +2,7 @@ name: CI Workflow
 
 on:
   pull_request:
-  triggers: [open, reopen]
+    types: [open, reopen]
     branches: [main]
   workflow_dispatch:
 
