@@ -14,25 +14,25 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
+
     - name: Set up environment
       run: |
         sudo apt-get update
         sudo apt-get install -y openjdk-8-jre-headless
-        pip3 install pytest pytest-xdist
-        pip3 install zapcli
+        # Удали pytest/zapcli, если не используешь
 
     - name: Use Node.js 18.x
       uses: actions/setup-node@v3
       with:
         node-version: 18.x
 
-    - name: Build Application (SCA)
+    - name: Install dependencies
       run: npm install
 
-    - name: Install wait-on
-      run: npm install wait-on
-      
+    - name: Build frontend
+      run: npm run build
+
     - name: Upload Build Output
       uses: actions/upload-artifact@v3
       with:
