@@ -3,7 +3,6 @@ const path = require('node:path');
 const { v4 } = require('uuid');
 const { REQUIRED_ENV_VARIABLES, OPTIONAL_ENV_VARIABLES, httpCodes } = require('../constants');
 const { logWarn, log } = require('../helpers/logger');
-
 const utils = {};
 
 const data = {
