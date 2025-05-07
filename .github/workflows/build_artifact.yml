@@ -3,6 +3,7 @@ name: CI build
 on:
   pull_request:
     types: [open, reopen]
+    branches: [main, main_test]
   workflow_dispatch:
 
 env: 
